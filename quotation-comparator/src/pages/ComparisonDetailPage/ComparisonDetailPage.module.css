@@ -1,0 +1,594 @@
+/* ComparisonDetailPage Module CSS — uses global CSS vars for full theme support */
+
+.page {
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 68px;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.main {
+  position: relative;
+  z-index: 10;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 36px 90px;
+}
+
+/* ── Top Bar ── */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.repoTag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  color: var(--accent-light);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 5px 12px;
+  border-radius: 50px;
+}
+
+.topActionGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.exportBtn,
+.exportPdfBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+.exportBtn {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10B981;
+}
+
+.exportBtn:hover {
+  background: rgba(16, 185, 129, 0.22);
+  transform: translateY(-1px);
+}
+
+.exportPdfBtn {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent-light);
+}
+
+.exportPdfBtn:hover {
+  background: rgba(99, 102, 241, 0.22);
+  transform: translateY(-1px);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: inherit;
+  transition: all 0.25s ease;
+}
+
+.backButton:hover {
+  background: var(--bg-glass-hover);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  transform: translateX(2px);
+}
+
+.actionButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10B981, #059669);
+  color: #FFFFFF;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+  font-family: inherit;
+}
+
+.exportBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+  filter: brightness(1.1);
+}
+
+.printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 12px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.printBtn:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-hover);
+}
+
+/* Export Success Toast */
+.exportSuccessBanner {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34D399;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero Header ── */
+.pageHero { margin-bottom: 32px; }
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 50px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent-light);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.heroPills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.heroPill {
+  padding: 6px 14px;
+  border-radius: 50px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.heroPillSavings {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #34D399;
+}
+
+/* ── WINNER BANNER ── */
+.winnerBanner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1.5px solid rgba(16, 185, 129, 0.35);
+  border-radius: 22px;
+  padding: 28px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 42px;
+  box-shadow: var(--shadow-md), 0 0 35px rgba(16, 185, 129, 0.1);
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.winnerLeft {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.winnerTrophyBox {
+  font-size: 3.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.4));
+}
+
+.winnerBadge {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #34D399;
+  letter-spacing: 1.2px;
+  margin-bottom: 4px;
+}
+
+.winnerName {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.winnerSub {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  max-width: 580px;
+}
+
+.winnerSavingsBox {
+  text-align: right;
+  background: var(--bg-surface);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 16px;
+  padding: 16px 26px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.savingsLabel {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.savingsAmount {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #10B981;
+  line-height: 1.1;
+}
+
+.savingsSub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── SCORECARDS SECTION ── */
+.scorecardsSection { margin-bottom: 44px; }
+
+.sectionHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sectionSubtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.sectionBadge {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--accent-light);
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.scorecardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.scorecard {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.scorecard:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.scorecardWinner {
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(99, 102, 241, 0.06);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+}
+
+.scorecardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.scorecardVendorName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.scorecardDelivery {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.scoreBox { text-align: right; }
+
+.scoreBig {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.scoreMax {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.progressBarWrap {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.8s ease;
+}
+
+.progressFillWinner {
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+}
+
+.progressFillOther {
+  background: var(--text-muted);
+}
+
+.scorecardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.costTotalText {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.winnerPill {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+.standardPill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-input);
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+
+/* ── TABLE SECTION ── */
+.tableSection { margin-bottom: 48px; }
+
+.tableCard {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.tableScroll { overflow-x: auto; }
+
+.compTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compTable th {
+  padding: 18px 24px;
+  background: var(--bg-surface);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.thItem { min-width: 260px; }
+.thVendor { min-width: 220px; }
+
+.tableRow {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tableRow:hover {
+  background: var(--bg-input);
+}
+
+.tdItem {
+  padding: 18px 24px;
+  vertical-align: top;
+}
+
+.itemNameText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.itemIndexText {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.tdVendor {
+  padding: 18px 24px;
+  vertical-align: top;
+}
+
+.tdBestVendor {
+  background: rgba(16, 185, 129, 0.04);
+}
+
+.priceLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.priceNumber {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.priceBestGreen { color: #34D399; }
+
+.bestTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 8px;
+  border-radius: 50px;
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10B981;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.metaRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metaBadge {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: var(--bg-input);
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+/* ── Bottom Bar ── */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .heroTitle { font-size: 2.2rem; }
+  .winnerBanner { flex-direction: column; text-align: left; }
+  .winnerSavingsBox { text-align: left; width: 100%; }
+}

@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* =======================================================
+   bidz.ai — GLOBAL DESIGN TOKENS
+   All colors are controlled here. Pages use var() only.
+======================================================= */
+
+:root,
+html[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-page:          #080B14;
+  --bg-surface:       rgba(13, 17, 32, 0.88);
+  --bg-surface-solid: #0D1120;
+  --bg-card:          rgba(15, 23, 42, 0.72);
+  --bg-card-hover:    rgba(20, 30, 55, 0.9);
+  --bg-input:         rgba(255, 255, 255, 0.04);
+  --bg-glass:         rgba(8, 11, 20, 0.85);
+  --bg-glass-hover:   rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --text-primary:     #F8FAFC;
+  --text-secondary:   #94A3B8;
+  --text-muted:       #64748B;
+  --text-accent:      #818CF8;
+
+  /* Borders */
+  --border-color:     rgba(255, 255, 255, 0.08);
+  --border-hover:     rgba(99, 102, 241, 0.45);
+  --border-strong:    rgba(255, 255, 255, 0.15);
+
+  /* Shadows */
+  --shadow-sm:        0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-md:        0 10px 30px rgba(0, 0, 0, 0.55);
+  --shadow-lg:        0 20px 50px rgba(0, 0, 0, 0.7);
+  --shadow-glow:      0 0 30px rgba(99, 102, 241, 0.2);
+
+  /* Accents */
+  --accent:           #6366F1;
+  --accent-light:     #818CF8;
+  --accent-green:     #10B981;
+  --accent-red:       #EF4444;
+  --accent-yellow:    #F59E0B;
+  --accent-cyan:      #06B6D4;
+
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  /* Crisp White Backgrounds */
+  --bg-page:          #F8FAFC;
+  --bg-surface:       #FFFFFF;
+  --bg-surface-solid: #FFFFFF;
+  --bg-card:          #FFFFFF;
+  --bg-card-hover:    #FFFFFF;
+  --bg-input:         #F1F5F9;
+  --bg-glass:         rgba(255, 255, 255, 0.92);
+  --bg-glass-hover:   #FFFFFF;
+
+  /* High-Contrast Readable Text */
+  --text-primary:     #0F172A;
+  --text-secondary:   #475569;
+  --text-muted:       #64748B;
+  --text-accent:      #4F46E5;
+
+  /* Crisp Borders */
+  --border-color:     #E2E8F0;
+  --border-hover:     rgba(79, 70, 229, 0.45);
+  --border-strong:    #CBD5E1;
+
+  /* Soft Ambient Shadows */
+  --shadow-sm:        0 2px 10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md:        0 8px 24px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-lg:        0 20px 45px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04);
+  --shadow-glow:      0 0 25px rgba(79, 70, 229, 0.12);
+
+  /* Accents tailored for white mode */
+  --accent:           #4F46E5;
+  --accent-light:     #6366F1;
+  --accent-green:     #059669;
+  --accent-red:       #DC2626;
+  --accent-yellow:    #D97706;
+  --accent-cyan:      #0284C7;
+
+  color-scheme: light;
+}
+
+/* =======================================================
+   BASE RESET & GLOBAL STYLES
+======================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-page);
+  transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-page) !important;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+#root {
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  transition: background-color 0.4s ease;
+}
+
+/* Light theme general enforcement */
+html[data-theme="light"] body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+html[data-theme="light"] * {
+  scrollbar-color: rgba(79, 70, 229, 0.25) #F1F5F9;
+}
+
+html[data-theme="dark"] * {
+  scrollbar-color: rgba(255, 255, 255, 0.15) #080B14;
+}
+
+/* =======================================================
+   SCROLLBAR
+======================================================= */
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+  transition: background 0.4s ease;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.55);
+}
+
+/* =======================================================
+   GLOBAL THEME TRANSITIONS — smooth on every element
+======================================================= */
+
+html[data-theme] *,
+html[data-theme] *::before,
+html[data-theme] *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.25s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Opt-out for active animations and transforms */
+html[data-theme] *[class*="anim"],
+html[data-theme] *[class*="float"],
+html[data-theme] *[class*="pulse"],
+html[data-theme] *[class*="spin"],
+html[data-theme] *[class*="Spinner"] {
+  transition: none !important;
+}

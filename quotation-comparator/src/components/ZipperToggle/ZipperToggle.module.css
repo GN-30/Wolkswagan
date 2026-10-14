@@ -1,0 +1,257 @@
+/* ZipperToggle — Animated zip/diagonal theme switcher */
+
+/* ── DIAGONAL WIPE OVERLAY ── */
+.zipWipeOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+
+  /* Start fully clipped (invisible) — polygon from bottom-left tip */
+  clip-path: polygon(0 100%, 0 100%, 0 100%);
+  transition: none;
+}
+
+.wipeToLight {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(241, 245, 249, 0.96) 50%,
+    rgba(226, 232, 240, 0.94) 100%
+  );
+}
+
+.wipeToDark {
+  background: linear-gradient(135deg,
+    rgba(8, 11, 20, 0.98) 0%,
+    rgba(13, 17, 32, 0.96) 50%,
+    rgba(15, 23, 42, 0.94) 100%
+  );
+}
+
+/* When animating: sweep the clip-path from bottom-left to top-right */
+.zipWipeActive {
+  animation: zipWipeSweep 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes zipWipeSweep {
+  0% {
+    clip-path: polygon(0 100%, 0 100%, 0 100%);
+  }
+  30% {
+    clip-path: polygon(0 100%, 60% 100%, 0 40%);
+  }
+  60% {
+    clip-path: polygon(0 100%, 120% 100%, 0 -20%);
+  }
+  80% {
+    clip-path: polygon(0 100%, 140% 100%, 0 -40%);
+  }
+  100% {
+    clip-path: polygon(0 100%, 160% 100%, 0 -60%);
+    opacity: 0;
+  }
+}
+
+/* ── ZIPPER BUTTON ── */
+.zipBtn {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  background: rgba(13, 17, 32, 0.92);
+  border: 1.5px solid rgba(99, 102, 241, 0.45);
+  border-radius: 20px;
+  padding: 8px 14px 8px 10px;
+
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.55),
+    0 0 20px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  font-family: 'Inter', sans-serif;
+  overflow: visible;
+  position: fixed;
+}
+
+/* Light theme overrides for the button */
+[data-theme="light"] .zipBtn {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.15),
+    0 0 20px rgba(99, 102, 241, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.zipBtn:hover {
+  transform: translateY(-3px) scale(1.04);
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(99, 102, 241, 0.4),
+    0 0 60px rgba(6, 182, 212, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.zipBtn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.zipBtnAnimating {
+  pointer-events: none;
+}
+
+/* ── ZIPPER TEETH TRACK ── */
+.zipTrack {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  padding: 2px 6px 2px 2px;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.08);
+  margin-right: 8px;
+}
+
+[data-theme="light"] .zipTrack {
+  border-right-color: rgba(0, 0, 0, 0.08);
+}
+
+.zipTooth {
+  display: block;
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+  box-shadow: 0 0 4px rgba(99, 102, 241, 0.5);
+  animation: toothPulse 1.8s ease-in-out infinite;
+}
+
+.zipTooth:nth-child(2) { animation-delay: 0.15s; }
+.zipTooth:nth-child(3) { animation-delay: 0.3s; }
+.zipTooth:nth-child(4) { animation-delay: 0.45s; }
+.zipTooth:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes toothPulse {
+  0%, 100% { opacity: 0.7; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.08); }
+}
+
+/* When animating, the teeth zip up fast */
+.zipBtnAnimating .zipTooth {
+  animation: toothZip 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.zipBtnAnimating .zipTooth:nth-child(1) { animation-delay: 0s; }
+.zipBtnAnimating .zipTooth:nth-child(2) { animation-delay: 0.06s; }
+.zipBtnAnimating .zipTooth:nth-child(3) { animation-delay: 0.12s; }
+.zipBtnAnimating .zipTooth:nth-child(4) { animation-delay: 0.18s; }
+.zipBtnAnimating .zipTooth:nth-child(5) { animation-delay: 0.24s; }
+
+@keyframes toothZip {
+  0% { transform: scaleX(1) scaleY(1); opacity: 0.7; }
+  40% { transform: scaleX(1.5) scaleY(0.6); opacity: 1; background: #10B981; }
+  70% { transform: scaleX(0.8) scaleY(1.4); opacity: 0.9; }
+  100% { transform: scaleX(1) scaleY(1); opacity: 0.7; }
+}
+
+/* ── ZIPPER PULL TAB ── */
+.zipPull {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.zipPullRun {
+  animation: pullSlide 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pullSlide {
+  0%   { transform: translateX(0) translateY(0) rotate(0deg); }
+  25%  { transform: translateX(6px) translateY(-4px) rotate(-8deg); }
+  55%  { transform: translateX(12px) translateY(-9px) rotate(-15deg); }
+  75%  { transform: translateX(8px) translateY(-6px) rotate(-10deg); }
+  100% { transform: translateX(0) translateY(0) rotate(0deg); }
+}
+
+.zipPullIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .zipPullIcon {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.zipBtn:hover .zipPullIcon {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.3);
+}
+
+.zipPullLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #CBD5E1;
+  font-family: 'Space Grotesk', monospace;
+  user-select: none;
+  transition: color 0.25s ease;
+}
+
+[data-theme="light"] .zipPullLabel {
+  color: #475569;
+}
+
+.zipBtn:hover .zipPullLabel {
+  color: #A5B4FC;
+}
+
+/* ── GLOW RING ── */
+.zipGlow {
+  position: absolute;
+  inset: -3px;
+  border-radius: 22px;
+  background: transparent;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.zipBtn:hover .zipGlow {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+}
+
+.zipBtnAnimating .zipGlow {
+  animation: glowPulse 0.85s ease-out forwards;
+}
+
+@keyframes glowPulse {
+  0%   { box-shadow: 0 0 0px rgba(99, 102, 241, 0); border-color: rgba(99, 102, 241, 0.2); }
+  40%  { box-shadow: 0 0 35px rgba(16, 185, 129, 0.6), 0 0 60px rgba(99, 102, 241, 0.4); border-color: rgba(16, 185, 129, 0.7); }
+  100% { box-shadow: 0 0 0px rgba(99, 102, 241, 0); border-color: rgba(99, 102, 241, 0.3); }
+}
